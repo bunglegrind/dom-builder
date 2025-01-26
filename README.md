@@ -1,6 +1,6 @@
-#DOM Builder: A vanilla Javascript alternative to JSX
+# DOM Builder: A vanilla Javascript alternative to JSX
 
-##Inspired from https://www.crockford.com/domjs.html
+## Inspired from https://www.crockford.com/domjs.html
 
 Usage:
 
