@@ -4,9 +4,16 @@
 
 Usage:
 
+class can be an array
+
 ```javascript
-dom.div(id|props)(...children)
+const dom = domBuilder();
+dom.<tag>(id|props)(...children)
 ```
 For void elements
 ```javascript
+const dom = domBuilder();
 dom.input(id|props)
+```
+
+Function attributes (onclick, etc.) are note supported.
