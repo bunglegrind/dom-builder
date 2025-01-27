@@ -1,8 +1,9 @@
 /*jslint browser, unordered*/
 /*property
-    a, append, button, class, create, createElement, div, entries, forEach,
-    freeze, id, img, input, isArray, join, label, li, map, option, ol, p,
-    select, setAttribute, span, textarea, ul
+a, addEventListener, append, article, aside, b, button, class, create,
+createElement, div, em, entries, forEach, freeze, h1, h2, h3, h4, h5, i, id,
+img, input, isArray, join, label, li, main, map, ol, option, p, select,
+setAttribute, span, strong, textarea, ul
 */
 
 function domBuilder(prefix = "") {
@@ -28,6 +29,10 @@ function domBuilder(prefix = "") {
             }
             node = document.createElement(tag[0]);
             Object.entries(tag[1]).forEach(function ([key, value]) {
+                if (typeof value === "function") {
+                    node.addEventListener(key, value);
+                    return;
+                }
                 node.setAttribute(key, value);
             });
         }
@@ -43,7 +48,7 @@ function domBuilder(prefix = "") {
         return node;
     }
 
-    function build(tag, props) {
+    function normalizeIdClass(tag, props) {
         if (typeof props === "string") {
             return [tag, {id: attributeName(props)}];
         }
@@ -67,14 +72,26 @@ function domBuilder(prefix = "") {
 
     }
 
-    const specialize = (el) => (props = {}) => (...nodes) => dom(
-        build(el, props),
-        ...nodes
+    const specialize = (el) => (props = {}) => (...children) => dom(
+        normalizeIdClass(el, props),
+        ...children
     );
-    const voidEl = (el) => (props) => dom(build(el, props));
+    const specializeVoid = (el) => (props) => dom(normalizeIdClass(el, props));
 
     return Object.freeze({
+        h1: specialize("h1"),
+        h2: specialize("h2"),
+        h3: specialize("h3"),
+        h4: specialize("h4"),
+        h5: specialize("h5"),
+        i: specialize("i"),
+        em: specialize("em"),
+        b: specialize("b"),
+        strong: specialize("strong"),
         div: specialize("div"),
+        article: specialize("article"),
+        main: specialize("main"),
+        aside: specialize("aside"),
         p: specialize("p"),
         ol: specialize("ol"),
         ul: specialize("ul"),
@@ -83,8 +100,8 @@ function domBuilder(prefix = "") {
         select: specialize("select"),
         button: specialize("button"),
         label: specialize("label"),
-        input: voidEl("input"),
-        img: voidEl("img"),
+        input: specializeVoid("input"),
+        img: specializeVoid("img"),
         a: specialize("a"),
         textarea: specialize("textarea"),
         option: specialize("option")
