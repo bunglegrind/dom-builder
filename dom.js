@@ -1,9 +1,11 @@
 /*jslint browser, unordered*/
 /*property
-a, addEventListener, append, article, aside, b, button, class, create,
-createElement, div, em, entries, forEach, freeze, h1, h2, h3, h4, h5, i, id,
-img, input, isArray, join, label, li, main, map, ol, option, p, select,
-setAttribute, span, strong, textarea, ul
+    a, addEventListener, address, append, article, aside, b, blockquote, button,
+    class, create, createElement, datalist, dd, div, dl, dt, em, entries,
+    fieldset, figcaption, figure, footer, forEach, form, freeze, h1, h2, h3, h4,
+    h5, h6, header, hr, i, id, img, input, isArray, join, label, legend, li,
+    main, map, nav, ol, optgroup, option, p, search, section, select,
+    setAttribute, span, strong, textarea, ul
 */
 
 function domBuilder(prefix = "") {
@@ -84,27 +86,46 @@ function domBuilder(prefix = "") {
         h3: specialize("h3"),
         h4: specialize("h4"),
         h5: specialize("h5"),
+        h6: specialize("h6"),
+        header: specialize("header"),
+        blockquote: specialize("blockquote"),
         i: specialize("i"),
         em: specialize("em"),
         b: specialize("b"),
         strong: specialize("strong"),
         div: specialize("div"),
+        address: specialize("address"),
         article: specialize("article"),
+        footer: specialize("footer"),
         main: specialize("main"),
+        nav: specialize("nav"),
         aside: specialize("aside"),
         p: specialize("p"),
         ol: specialize("ol"),
         ul: specialize("ul"),
         li: specialize("li"),
+        dd: specialize("dd"),
+        dt: specialize("dt"),
+        dl: specialize("dl"),
+        figure: specialize("figure"),
+        figcaption: specialize("figcaption"),
         span: specialize("span"),
         select: specialize("select"),
         button: specialize("button"),
         label: specialize("label"),
+        legend: specialize("legend"),
+        fieldset: specialize("fieldset"),
+        form: specialize("form"),
         input: specializeVoid("input"),
         img: specializeVoid("img"),
+        hr: specializeVoid("hr"),
         a: specialize("a"),
         textarea: specialize("textarea"),
-        option: specialize("option")
+        option: specialize("option"),
+        optgroup: specialize("optgroup"),
+        datalist: specialize("datalist"),
+        search: specialize("search"),
+        section: specialize("section")
     });
 }
 
