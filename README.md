@@ -5,12 +5,12 @@
 Usage:
 
 ```javascript
-const dom = domBuilder();
+const dom = domBuilder(document);
 dom.<tag>(id|props)(...children)
 ```
 For void elements
 ```javascript
-const dom = domBuilder();
+const dom = domBuilder(document);
 dom.input(id|props)
 ```
 Argument can be a string (id) or an object literal (props) with attribute => value properties. If attribute is `class`, value can be an array of string.
