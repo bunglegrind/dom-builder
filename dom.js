@@ -8,11 +8,11 @@
     setAttribute, span, strong, textarea, ul
 */
 
-function domBuilder(prefix = "") {
+function domBuilder(document, prefix = "") {
     function attributeName(prop) {
         return (
             prefix
-            ? `${prefix}-prop`
+            ? `${prefix}-${prop}`
             : prop
         );
     }
